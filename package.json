@@ -1,0 +1,26 @@
+{
+  "name": "single-user-blog",
+  "version": "1.0.0",
+  "description": "Single user blog made for my own needs",
+  "main": "server.js",
+  "repository": "https://github.com/Laetronaz/single-user-blog.git",
+  "author": "Laetronaz <michelwarcraft@hotmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "node server.js",
+    "server": "nodemon server.js",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "dependencies": {
+    "axios": "^0.19.0",
+    "concurrently": "^4.1.1",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "express-graphql": "^0.8.0",
+    "graphql": "^14.4.2"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.1"
+  }
+}
