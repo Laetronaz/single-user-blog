@@ -9,3 +9,20 @@ export const POSTS_QUERY = gql`
     }
   }
 `;
+
+export const POST_QUERY = gql`
+  query jsonTemplateAPI($id: Int!) {
+    post(id: $id) {
+      id
+      userId
+      title
+      body
+      comments {
+        id
+        name
+        email
+        body
+      }
+    }
+  }
+`;

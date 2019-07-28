@@ -13,7 +13,6 @@ import CategoriesItem from "./components/categories/CategoriesItems";
 import Category from "./components/categories/Category";
 import AlbumsItems from "./components/albums/AlbumsItems";
 import Album from "./components/albums/Album";
-import Gallery from "./components/gallery/Gallery";
 import About from "./components/pages/about";
 import NotFound404 from "./components/pages/NotFound404";
 import PageHeader from "./components/template/PageHeader";
@@ -62,7 +61,6 @@ export default class App extends Component {
                           path="/albums/:album_id"
                           component={Album}
                         />
-                        <Route exact path="/gallery" component={Gallery} />
                         <Route component={NotFound404} />
                       </Switch>
                     </div>

@@ -90,11 +90,6 @@ export default class SideMenu extends Component {
             <Icon type="tags" />
             <span>Tags</span>
           </Menu.Item>
-
-          <Menu.Item key="9">
-            <Icon type="picture" />
-            <span>Gallery</span>
-          </Menu.Item>
           <Menu.Item key="10">
             <Icon type="question-circle" />
             <span>About</span>
