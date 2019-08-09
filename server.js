@@ -1,6 +1,8 @@
 const express = require("express");
 const cors = require("cors");
 const graphqlHTTP = require("express-graphql");
+const OktaJwtVerifier = require("@okta/jwt-verifier");
+
 const path = require("path");
 const schema = require("./schema");
 
@@ -14,7 +16,6 @@ app.use("/graphql", graphqlHTTP({ schema: schema, graphiql: true }));
 
 app.use(express.static("public"));
 
-// create basic GET route
 app.get("*", (req, res) => {
   res.sendFile(path.resolver(__dirname, "/client/public", "index.html"));
 });
