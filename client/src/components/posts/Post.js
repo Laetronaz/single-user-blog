@@ -1,15 +1,13 @@
 import React, { Component } from "react";
 import { Query } from "react-apollo";
-import { Spin, Typography, Row, Col, Divider, Comment, Avatar } from "antd";
-
-import "../css/post.css";
+import { Spin, Typography, Row, Col, Divider } from "antd";
+import { DiscussionEmbed, CommentCount } from "disqus-react";
 import { POST_QUERY } from "../querries/posts";
+import { constants } from "../constants/WebsiteConstants";
 
 const { Title, Text } = Typography;
 
 export default class Post extends Component {
-  addComment() {}
-
   render() {
     let { post_id } = this.props.match.params;
     const id = parseInt(post_id);
@@ -25,7 +23,14 @@ export default class Post extends Component {
           if (error) console.log(error);
 
           const post = data.post;
-          const comments = post.comments;
+
+          const disqusShortname = "localhost-3000-uqb4wvpldy";
+          const disqusConfig = {
+            url: `${constants.URL}/posts/`,
+            identifier: post_id,
+            title: post.title
+          };
+
           return (
             <div>
               <Row type="flex" justify="space-around" align="middle">
@@ -45,15 +50,16 @@ export default class Post extends Component {
                   <Title level={2}> {post.title} </Title>
                   <Text>{post.body}</Text>
                   <Divider />
-                  <Title level={3}> Comments ({comments.length}):</Title>
-                  {post.comments.map(comment => (
-                    <Comment
-                      key={comment.id}
-                      author={comment.name}
-                      content={comment.body}
-                      avatar={<Avatar icon="user" />}
-                    />
-                  ))}
+                  <CommentCount
+                    shortname={disqusShortname}
+                    config={disqusConfig}
+                  >
+                    Comments
+                  </CommentCount>
+                  <DiscussionEmbed
+                    shortname={disqusShortname}
+                    config={disqusConfig}
+                  />
                   <Divider />
                 </Col>
               </Row>

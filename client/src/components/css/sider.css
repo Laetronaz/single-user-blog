@@ -1,6 +1,6 @@
 .logo {
   display: inline;
-  line-height: 50px;
+  line-height: 0px;
 }
 
 .sider-title {
@@ -14,5 +14,5 @@
 .sider-title-div {
   display: inline-flexbox;
   text-align: center;
-  line-height: 50px;
+  line-height: 0px;
 }

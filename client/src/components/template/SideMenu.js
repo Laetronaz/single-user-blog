@@ -19,19 +19,6 @@ export default withAuth(
 
     onCollapse = collapsed => {
       this.setState({ collapsed });
-
-      const title = document.querySelector(".sider-title");
-      if (collapsed) {
-        title.classList.add("invisible");
-        if (title.classList.contains("animated")) {
-          title.classList.remove("animated", "fadeIn", "slower");
-        }
-      } else {
-        setTimeout(() => {
-          title.classList.remove("invisible");
-          title.classList.add("animated", "fadeIn", "slower");
-        }, 100);
-      }
     };
 
     checkAuthentication = async () => {
@@ -51,7 +38,6 @@ export default withAuth(
 
     login = async () => {
       this.props.auth.login("/");
-      console.log("allo!");
     };
 
     logout = async () => {
@@ -60,6 +46,12 @@ export default withAuth(
 
     render() {
       if (this.state.authenticated === null) return null;
+
+      const title = this.state.collapsed ? (
+        <div />
+      ) : (
+        <div className="sider-title">Laetronaz Blog</div>
+      );
 
       const posts = this.state.authenticated ? (
         <SubMenu
@@ -138,23 +130,13 @@ export default withAuth(
       ) : (
         <div />
       );
-
-      const profile = this.state.authenticated ? (
-        <Menu.Item key="14">
-          <Icon type="profile" />
-          <span>Profile</span>
-        </Menu.Item>
-      ) : (
-        <div />
-      );
-
       const AuthMenu = this.state.authenticated ? (
-        <Menu.Item key="15" onClick={this.logout}>
+        <Menu.Item key="14" onClick={this.logout}>
           <Icon type="logout" />
           <span>Logout</span>
         </Menu.Item>
       ) : (
-        <Menu.Item key="15" onClick={this.login}>
+        <Menu.Item key="14" onClick={this.login}>
           <Icon type="login" />
           <span>Login</span>
         </Menu.Item>
@@ -167,11 +149,8 @@ export default withAuth(
           onCollapse={this.onCollapse}
         >
           <div className="sider-title-div">
-            <div className="logo">
-              <Avatar size="large" shape="circle" src={logo} />
-            </div>
-
-            <div className="sider-title">Laetronaz Blog</div>
+            <Avatar size="large" shape="circle" src={logo} />
+            {title}
           </div>
 
           <Menu theme="dark" defaultSelectedKeys={["1"]} mode="inline">
@@ -198,7 +177,6 @@ export default withAuth(
               </Link>
             </Menu.Item>
             {logs}
-            {profile}
             {AuthMenu}
           </Menu>
         </Sider>
