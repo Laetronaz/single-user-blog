@@ -8,6 +8,9 @@ import ApolloClient from "apollo-boost";
 import SideMenu from "./components/template/SideMenu";
 import Posts from "./components/posts/Posts";
 import Post from "./components/posts/Post";
+import NewPost from "./components/posts/NewPost";
+import EditPost from "./components/posts/EditPost";
+import ManagePosts from "./components/posts/ManagePosts";
 import CategoriesItem from "./components/categories/CategoriesItems";
 import Category from "./components/categories/Category";
 import AlbumsItems from "./components/albums/AlbumsItems";
@@ -60,7 +63,14 @@ export default class App extends Component {
                     >
                       <Switch>
                         <Route exact path="/about" component={About} />
+                        <Route exact path="/posts/new" component={NewPost} />
+                        <Route exact path="/posts" component={ManagePosts} />
                         <Route exact path="/posts/:post_id" component={Post} />
+                        <Route
+                          exact
+                          path="/posts/edit/:post_id"
+                          component={EditPost}
+                        />
                         <Route
                           exact
                           path="/categories/"
